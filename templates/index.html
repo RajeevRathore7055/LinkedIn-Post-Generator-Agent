@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LinkedIn Post Generator Agent</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+  <div class="masthead">
+    <div class="masthead-inner">
+      <!-- <span class="masthead-mark">§📝</span> -->
+      <span class="masthead-mark">📝</span>
+      <div class="masthead-text">
+        <p class="eyebrow">Agentic writing desk</p>
+        <h1>LinkedIn Post Generator Agent</h1>
+      </div>
+    </div>
+    <p class="masthead-sub">Six drafting stages — intent, plan, hook, prose, polish, tags — run in sequence so your post
+      earns its scroll-stop.</p>
+  </div>
+
+  <main class="workspace">
+
+    <!-- LEFT: INPUT DESK -->
+    <section class="desk" aria-label="Post brief form">
+      <form id="post-form">
+
+        <div class="field">
+          <label for="topic">Topic</label>
+          <input type="text" id="topic" name="topic" placeholder="e.g. Lessons from shipping my first AI agent" required
+            maxlength="300">
+        </div>
+
+        <div class="field">
+          <label for="audience">Target audience</label>
+          <input type="text" id="audience" name="audience" placeholder="e.g. Early-career software engineers" required
+            maxlength="200">
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="tone">Tone</label>
+            <select id="tone" name="tone" required>
+              <option value="Professional">Professional</option>
+              <option value="Friendly">Friendly</option>
+              <option value="Inspirational">Inspirational</option>
+              <option value="Technical">Technical</option>
+              <option value="Marketing">Marketing</option>
+              <option value="Educational">Educational</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="length">Length</label>
+            <select id="length" name="length" required>
+              <option value="Short">Short</option>
+              <option value="Medium" selected>Medium</option>
+              <option value="Long">Long</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="goal">Goal</label>
+          <select id="goal" name="goal" required>
+            <option value="Personal Branding">Personal Branding</option>
+            <option value="Hiring">Hiring</option>
+            <option value="Product Launch">Product Launch</option>
+            <option value="Achievement">Achievement</option>
+            <option value="Learning">Learning</option>
+            <option value="Networking">Networking</option>
+            <option value="Announcement">Announcement</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="keywords">Keywords <span class="optional">optional</span></label>
+          <input type="text" id="keywords" name="keywords" placeholder="e.g. FastAPI, LangGraph, AWS" maxlength="300">
+        </div>
+
+        <button type="submit" id="generate-btn" class="btn-generate">
+          <span class="btn-label">Draft the post</span>
+          <span class="btn-spinner" hidden></span>
+        </button>
+
+        <p id="form-error" class="form-error" role="alert" hidden></p>
+      </form>
+
+      <ol class="stage-tracker" id="stage-tracker" aria-hidden="true">
+        <li data-stage="0">Intent</li>
+        <li data-stage="1">Plan</li>
+        <li data-stage="2">Hook</li>
+        <li data-stage="3">Draft</li>
+        <li data-stage="4">Polish</li>
+        <li data-stage="5">Tags</li>
+      </ol>
+    </section>
+
+    <!-- RIGHT: PREVIEW CARD -->
+    <section class="preview-pane" aria-label="Generated post preview">
+
+      <div class="preview-card" id="preview-card">
+        <div class="preview-empty" id="preview-empty">
+          <span class="empty-glyph">✎</span>
+          <p>Your polished post will appear here, formatted the way it'll actually read on the feed.</p>
+        </div>
+
+        <div class="preview-content" id="preview-content" hidden>
+          <div class="mock-header">
+            <div class="mock-avatar" aria-hidden="true"></div>
+            <div class="mock-identity">
+              <span class="mock-name">You</span>
+              <span class="mock-headline">Posting to your network</span>
+            </div>
+          </div>
+
+          <div class="mock-body">
+            <p class="mock-hook" id="output-hook"></p>
+            <p class="mock-post" id="output-post"></p>
+            <p class="mock-hashtags" id="output-hashtags"></p>
+          </div>
+
+          <div class="mock-footer" aria-hidden="true">
+            <span>👍 Like</span>
+            <span>💬 Comment</span>
+            <span>↻ Repost</span>
+            <span>➤ Send</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="preview-actions" id="preview-actions" hidden>
+        <button type="button" id="copy-btn" class="btn-secondary">Copy post</button>
+        <button type="button" id="clear-btn" class="btn-secondary btn-ghost">Clear</button>
+      </div>
+
+      <p id="output-error" class="output-error" role="alert" hidden></p>
+    </section>
+
+  </main>
+
+  <footer class="page-footer">
+    <p>Built with a 6-stage agent pipeline — FastAPI + Groq.</p>
+  </footer>
+
+  <script src="/static/script.js"></script>
+</body>
+
+</html>
