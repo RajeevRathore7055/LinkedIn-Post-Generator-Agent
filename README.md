@@ -1,12 +1,12 @@
 # LinkedIn Post Generator Agent
 
-An AI agent that plans, writes, and polishes professional LinkedIn posts — built with FastAPI, Groq, and a true multi-stage agentic workflow (not a single prompt call).
+An AI agent that plans, writes, and polishes professional LinkedIn posts — built with FastAPI, Groq and a true multi-stage agentic workflow (not a single prompt call).
 
 ---
 
 ## Project Overview
 
-Give the agent a topic, target audience, tone, length, goal, and optional keywords, and it runs a 6-stage pipeline to produce a scroll-stopping LinkedIn post:
+Give the agent a topic, target audience, tone, length, goal, and optional keywords and it runs a 6-stage pipeline to produce a scroll-stopping LinkedIn post:
 
 ```
 User Input
